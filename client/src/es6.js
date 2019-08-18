@@ -10,7 +10,8 @@ const DOM = {
 	main: document.querySelector('.main'),
 	googleButton: document.querySelector('.google_button'),
 	googleForm: document.querySelector('.google_form'),
-	googleInput: document.querySelector('.google_form_input')
+	googleInput: document.querySelector('.google_form_input'),
+	sections: [...document.querySelectorAll('.section')]
 };
 
 const REQUESTS = {
@@ -34,23 +35,38 @@ DOM.googleForm.addEventListener('submit', e => {
 	DOM.googleButton.click();
 });
 
-// ON PAGE LOAD, LET 'ER RIP
-(() => {
-	[...Object.values(REQUESTS)].forEach(request => {
-		request.addEventListener('load', console.log('loading'));
-		request.open('GET', 'https://jsonplaceholder.typicode.com/posts');
-		request.send();
-		console.log([...REQUESTS.getWeather.responseText]);
-	});
-	return DOM.navNotifications.forEach(
-		spanElement =>
-			(spanElement.innerText =
-				NOTIFICATIONS[
-					`${
-						spanElement.classList[spanElement.classList.length - 1].split('_')[
-							spanElement.classList[spanElement.classList.length - 1].split('_').length - 1
-						]
-					}`
-				].length)
-	);
-})();
+// SECTION SIZING
+DOM.sections.forEach(section =>
+	section.addEventListener('click', () => {
+		DOM.sections.forEach(section => {
+			if (section.classList.contains('section_active')) {
+				section.classList.remove('section_active');
+			}
+		});
+		return section.classList.toggle('section_active');
+	})
+);
+DOM.googleForm.addEventListener('click', () =>
+	DOM.sections.forEach(section => section.classList.remove('section_active'))
+)(
+	// ON PAGE LOAD, LET 'ER RIP
+	() => {
+		[...Object.values(REQUESTS)].forEach(request => {
+			request.addEventListener('load', console.log('loading'));
+			request.open('GET', 'https://jsonplaceholder.typicode.com/posts');
+			request.send();
+			console.log([...REQUESTS.getWeather.responseText]);
+		});
+		return DOM.navNotifications.forEach(
+			spanElement =>
+				(spanElement.innerText =
+					NOTIFICATIONS[
+						`${
+							spanElement.classList[spanElement.classList.length - 1].split('_')[
+								spanElement.classList[spanElement.classList.length - 1].split('_').length - 1
+							]
+						}`
+					].length)
+		);
+	}
+)();
