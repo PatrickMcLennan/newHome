@@ -1,0 +1,30 @@
+// MIXINS
+@mixin flex($jc: center, $ai: center, $fd: row, $fw: nowrap) {
+	display: flex;
+	justify-content: $jc;
+	align-items: $ai;
+	flex-direction: $fd;
+	flex-wrap: $fw;
+}
+
+// RESETS
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+}
+html {
+	font-size: 62.5%;
+	box-sizing: border-box;
+}
+body {
+	@include flex();
+	min-height: 100vh;
+}
+
+// GOOGLE FORM
+.google_button {
+	display: none;
+}
