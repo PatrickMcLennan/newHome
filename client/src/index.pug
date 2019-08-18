@@ -5,10 +5,39 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
         link(rel="stylesheet", href="./style.css")
+        link(href="https://fonts.googleapis.com/css?family=Lato:100,300,400&display=swap", rel="stylesheet")
         script(defer, src="./app.js")
-        title P A T R I C K   M C L E N N A N
+        title P A T R I C K | M C L E N N A N
     body
+        
+        nav.nav
+            - const links = ['Facebook', 'Gmail', 'Work']
+            - const spans = ['top', 'right', 'bottom', 'left']
+            for link in links
+                a.nav_button #{link}
+                    for span in spans
+                        span(class="nav_span nav_span_" + span)
+                    ul.nav_ul
+                        li.nav_li_header_active.nav_li You have #[span.nav_notification_span(class="nav_notification_span_" + link[0].toLowerCase() + link.slice(1, link.length))] notifications
+                        //- This will be handled via js, just examples for now
+                        li.nav_li(style="transition-delay: 0;") Notification #1
+                        li.nav_li(style="transition-delay: .05s;") Notification #2
+                        li.nav_li(style="transition-delay: .1s;") Notification #3
+                        li.nav_li(style="transition-delay: .15s;") Notification #4
+                            
+        main.main.main_viewport_offset_-1
+        
+            section.section.splash
+                form.google_form
+                    input.google_form_input(type="text", placeholder="Google It . . .")
+                    a.google_button(href="", target="_blank")
 
-        form.google_form
-            input.google_form_input(type="text", placeholder="Search...")
-            a.google_button(href="", target="_blank")
+
+            section.section.facebook
+                h2 hello i am facebook
+
+            section.section.gmail
+                h2 hello i am gmail
+
+            section.section.work
+                h2 hello i am work
