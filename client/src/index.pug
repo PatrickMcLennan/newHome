@@ -13,19 +13,17 @@ html(lang="en")
         main.main
 
             - const spans = ['top', 'right', 'bottom', 'left']
-
         
             form.google_form
                 input.google_form_input(type="text", placeholder="Google It . . .", tab-index: "1")
                 a.google_button(href="", target="_blank")
-
 
             section.section.section_facebook
                 button.section_header Facebook
                     for span in spans
                         span(class="section_header_span section_header_span_" + span)
                     ul.section_header_ul.section_header_ul_facebook
-                        li.section_header_active.section_header_li You have #[span.section_header_notification_span_facebook] notifications
+                        li.section_header_li_header.section_header_li You have #[span.section_header_notification_span_facebook] notifications
                         //- This will be handled via js, just examples for now
                         li.section_header_li(style="transition-delay: 0;") Notification #1
                         li.section_header_li(style="transition-delay: .05s;") Notification #2
@@ -37,7 +35,7 @@ html(lang="en")
                     for span in spans
                         span(class="section_header_span section_header_span_" + span)
                     ul.section_header_ul.section_header_ul_gmail
-                        li.section_header_active.section_header_li You have #[span.section_header_notification_span_gmail] notifications
+                        li.section_header_li_header.section_header_li You have #[span.section_header_notification_span_gmail] notifications
                         //- This will be handled via js, just examples for now
                         li.section_header_li(style="transition-delay: 0;") Notification #1
                         li.section_header_li(style="transition-delay: .05s;") Notification #2
@@ -49,7 +47,7 @@ html(lang="en")
                     for span in spans
                         span(class="section_header_span section_header_span_" + span)
                     ul.section_header_ul.section_header_ul_work
-                        li.section_header_active.section_header_li You have #[span.section_header_notification_span_work] notifications
+                        li.section_header_li_header.section_header_li You have #[span.section_header_notification_span_work] notifications
                         //- This will be handled via js, just examples for now
                         li.section_header_li(style="transition-delay: 0;") Notification #1
                         li.section_header_li(style="transition-delay: .05s;") Notification #2

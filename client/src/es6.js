@@ -5,8 +5,11 @@ const NOTIFICATIONS = {
 };
 
 const DOM = {
-	navNotifications: [...document.querySelectorAll('.nav_notification_span')],
-	navLinks: [...document.querySelectorAll('.nav_button')],
+	notificationSpans: [
+		document.querySelector('.section_header_notification_span_facebook'),
+		document.querySelector('.section_header_notification_span_gmail'),
+		document.querySelector('.section_header_notification_span_work')
+	],
 	main: document.querySelector('.main'),
 	googleButton: document.querySelector('.google_button'),
 	googleForm: document.querySelector('.google_form'),
@@ -15,18 +18,8 @@ const DOM = {
 };
 
 const REQUESTS = {
-	getWeather: new XMLHttpRequest()
+	getWeather: { call: new XMLHttpRequest(), url: 'https://jsonplaceholder.typicode.com/posts' }
 };
-
-// NAV
-DOM.navLinks.forEach((link, i) =>
-	link.addEventListener('click', () => {
-		if (DOM.main.classList[DOM.main.classList.length - 1].toString().includes('main_viewport_offset')) {
-			DOM.main.classList.remove(DOM.main.classList[DOM.main.classList.length - 1]);
-		}
-		return DOM.main.classList.add(`main_viewport_offset_${i}`);
-	})
-);
 
 // GOOGLE FORM
 DOM.googleForm.addEventListener('submit', e => {
@@ -48,25 +41,21 @@ DOM.sections.forEach(section =>
 );
 DOM.googleForm.addEventListener('click', () =>
 	DOM.sections.forEach(section => section.classList.remove('section_active'))
-)(
-	// ON PAGE LOAD, LET 'ER RIP
-	() => {
-		[...Object.values(REQUESTS)].forEach(request => {
-			request.addEventListener('load', console.log('loading'));
-			request.open('GET', 'https://jsonplaceholder.typicode.com/posts');
-			request.send();
-			console.log([...REQUESTS.getWeather.responseText]);
-		});
-		return DOM.navNotifications.forEach(
-			spanElement =>
-				(spanElement.innerText =
-					NOTIFICATIONS[
-						`${
-							spanElement.classList[spanElement.classList.length - 1].split('_')[
-								spanElement.classList[spanElement.classList.length - 1].split('_').length - 1
-							]
-						}`
-					].length)
-		);
-	}
-)();
+);
+
+// ON PAGE LOAD, LET 'ER RIP
+(() => {
+	[...Object.values(REQUESTS)].forEach(request => {
+		request.call.addEventListener('load', console.log('loading'));
+		request.call.open('GET', request.url);
+		request.call.send();
+		// console.log([...REQUESTS.getWeather.responseText]);
+	});
+	return DOM.notificationSpans.forEach(
+		spanElement =>
+			(spanElement.innerText =
+				NOTIFICATIONS[
+					`${spanElement.classList[0].split('_')[spanElement.classList[0].split('_').length - 1]}`
+				].length)
+	);
+})();

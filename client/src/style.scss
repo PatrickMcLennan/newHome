@@ -39,11 +39,11 @@ li {
 // FORM
 .google_form {
 	position: absolute;
-	top: 5vw;
-	left: 5vw;
+	top: 2.5vw;
+	left: 2.5vw;
 }
 .google_form_input {
-	width: 30%;
+	width: 20rem;
 	min-width: 25rem;
 	padding: 0.75rem 1.75rem;
 	border: none;
@@ -110,13 +110,22 @@ li {
 
 .section_facebook {
 	@include flex(flex-start, flex-end, column);
+	background-size: 95vw;
+	background-image: radial-gradient(#2980b9, darken(#2980b9, 50%));
+	background-position: left;
 }
 .section_gmail {
 	@include flex(flex-start, center, column);
 	margin: 0 1px;
+	background-size: 95vw;
+	background-image: radial-gradient(#e74c3c, darken(#e74c3c, 50%));
+	background-position: center;
 }
 .section_work {
 	@include flex(flex-start, flex-start, column);
+	background-size: 95vw;
+	background-image: radial-gradient(#2ecc71, darken(#2ecc71, 50%));
+	background-position: right;
 }
 
 // SECTION HEADERS
@@ -125,6 +134,7 @@ li {
 	padding: 1rem 2rem;
 	background-color: transparent;
 	border: none;
+	color: white;
 	cursor: pointer;
 	font-size: 2rem;
 	font-weight: 100;
@@ -160,7 +170,7 @@ li {
 
 .section_header_span {
 	position: absolute;
-	background-color: black;
+	background-color: white;
 	opacity: 0;
 	transition: all 0.3s ease-in-out;
 }
@@ -230,7 +240,7 @@ li {
 .section_header_ul_gmail {
 	@include flex(center, center, column);
 	left: 50%;
-	transform: translate(-50%, 200%);
+	transform: translate(-50%, 350%);
 }
 .section_header_ul_work {
 	@include flex(flex-start, flex-start, column);
